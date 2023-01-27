@@ -7,9 +7,7 @@ const app = express();
 let apiRoutes = express.Router();
 
 apiRoutes.use((req, res, next) => { //allow cross origin requests
-  // res.writeHead(200, {
-  //   "Content-Type": "text/html; charset=utf-8"
-  // });
+
   res.header("Access-Control-Allow-Methods",  "*");
 
   res.header("Access-Control-Allow-Origin", "*");
@@ -21,8 +19,6 @@ next();
 apiRoutes.use(bodyParser.json());
 
 app.use('/api', apiRoutes);
-// API file for interacting with MongoDB
-// const api = require('./server/routes/api');
 
 // Parsers
 app.use(bodyParser.json());
@@ -31,8 +27,7 @@ app.use(bodyParser.urlencoded({ extended: false}));
 // Angular DIST output folder
 app.use(express.static(path.join(__dirname, 'dist')));
 
-// API location
-// app.use('/api', api);
+
 
 // Send all other requests to the Angular app
 app.get('*', (req, res) => {

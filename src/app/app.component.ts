@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import {environment} from '../environments/environment';
 
 
 @Component({
@@ -14,11 +13,12 @@ export class AppComponent {
   searchWord: string;
   searchData: any = [];
   searchErr: any = false;
+  title = 'приложение';
 
 
   setValue() {
     this.searchErr = false;
-      this.http.get( environment.serverUrl + '/api/getSearch?searchWord=' + this.searchWord).subscribe((data: any) => {
+      this.http.get( '/api/getSearch?searchWord=' + this.searchWord).subscribe((data: any) => {
         console.log(data);
         console.log(data.response);
         if (data.success === false) {
@@ -38,10 +38,10 @@ export class AppComponent {
 
 
   }
-  delValue(id){
-    for(let i = 0;i < this.searchData.length; i++ ) {
-      if(this.searchData[i].id === id) {
-        this.searchData.splice(i,1);
+  delValue(id) {
+    for ( let i = 0; i < this.searchData.length; i++ ) {
+      if (this.searchData[i].id === id) {
+        this.searchData.splice(i, 1);
       }
     }
 
@@ -49,5 +49,5 @@ export class AppComponent {
   }
 
 
-  title = 'приложение';
+
 }
